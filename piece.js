@@ -1,7 +1,7 @@
 import * as jsChessEngine from './node_modules/js-chess-engine/lib/js-chess-engine.mjs'
 const game = new jsChessEngine.Game()
 var whiteTurn = true
-
+var aiLevel = 2
 
 var pieceData = "https://assets-themes.chess.com/image/ejgfv/150/"
 var chessroot = document.getElementById("chessboard")
@@ -74,11 +74,15 @@ function updatePiece(piece) { //Update position ONLY
 function createHints(moves){
     moves.forEach(function (move){
         var hint = document.createElement("div")
-        move = chessNot2Int(move)
+        move = chessNot2Int(move) //Int notation
         
         hint.style.top = `${parseInt(move[0])*cellSize}px`
         hint.style.left = `${parseInt(move[1])*cellSize}px`
-        hint.className = "hint"
+        if (document.getElementById(`p${move}`)){
+            hint.className = "hint-capture"
+        } else {
+            hint.className = "hint" 
+        }
 
         document.getElementById("hints").appendChild(hint)
     })
@@ -124,6 +128,41 @@ function chessNot2Int(not){
 
     return `${8-not[1]}${not.charCodeAt(0)-97}`
 }
+/**
+ * 
+ * @param {HTMLElement} piece 
+ * @param {String} pos1 Int Notation for origin
+ * @param {String} pos2 Int Notation for target
+ */
+function movePiece(pos1, pos2){
+    whiteTurn = false;
+    var targetPiece = document.getElementById(`p${pos2}`)
+    var movingPiece = document.getElementById(`p${pos1}`)
+
+
+    movingPiece.id = `p${pos2}`
+    updatePiece(movingPiece)
+
+    if (targetPiece){
+        targetPiece.remove()
+    }
+
+    return new Promise((resolve)=>{
+        setTimeout(resolve, 200)
+    })
+}
+
+function robotMove(){
+    var aiM = game.aiMove(aiLevel)
+    
+    var [moveFrom, moveTo] = Object.entries(aiM)[0] //Both are in Chess Notation
+    moveFrom = chessNot2Int(moveFrom)
+    moveTo = chessNot2Int(moveTo)
+
+    movePiece(moveFrom, moveTo)
+
+    whiteTurn=true
+}
 
 document.addEventListener("click", function (event){
     if (!chessroot.contains(event.target)){
@@ -132,10 +171,12 @@ document.addEventListener("click", function (event){
     }
 })
 
-chessroot.addEventListener("click", function (event){
-    if (document.getElementById("select-box").style.visibility=='hidden'){
+chessroot.addEventListener("click",async function (event){
+    var selBox = document.getElementById("select-box")
+    if (selBox.style.visibility=="hidden"){
         return
     }
+
 
     const rect = this.getBoundingClientRect()
 
@@ -146,8 +187,28 @@ chessroot.addEventListener("click", function (event){
     y = Math.floor(y/cellSize)
 
     var posInt = `${y}${x}`
-    var pos
-    console.log(posInt) 
+    var selPiece = document.getElementById(`p${posInt}`)
+
+
+    var posCN = int2ChessNot(posInt)                    //Move to
+    var posCNOrigin = int2ChessNot(selBox.className)    //Move from
+
+    if (selPiece){//change target only, doing nothing for now
+        
+    } else { //Move
+        selBox.style.visibility = 'hidden'
+        clearHints()
+
+        var moved = game.move(posCNOrigin, posCN)
+
+        if (!moved){
+            return
+        }
+        await movePiece(selBox.className, posInt)
+        console.log(moved)
+
+        robotMove()
+    }
 })
 
 updatePieces()
