@@ -17,13 +17,18 @@
 .cell {
     width: 65px;
     height: 65px;
+    position: relative;
 }
 .black {
     background-color: #729551;
+    color: #ececd0;
+    font-weight: bold;
 }
 
 .white {
     background-color: #ececd0;
+    color: #729551;
+    font-weight: bold;
 }
 .piece {
     height: 65px;
@@ -38,4 +43,14 @@
     width: 65px;
     background-color: rgba(255,255,0,.4);
     visibility:hidden;
+}
+
+.numLabel {
+    position: absolute;
+    background-color: transparent;
+    margin-top: 2px;
+    margin-left: 3px;
+}
+.charLabel {
+    position: absolute;
 }
