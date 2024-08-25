@@ -1,6 +1,5 @@
 import * as jsChessEngine from './node_modules/js-chess-engine/lib/js-chess-engine.mjs'
 const game = new jsChessEngine.Game()
-var selecting = true
 var whiteTurn = true
 
 
@@ -36,31 +35,57 @@ for (var row = 0; row < 8; row++) {
         chessroot.appendChild(piece)
     }
 }
-function updateSelectBox(){
+function updateSelectBox(newPos = "", show=false) {
     var sbox = document.getElementById("select-box")
+
+    if (newPos) {
+        sbox.className = newPos
+    }
+
     var pos = sbox.className
 
-    if (selecting){
+    if (show) {
         sbox.style.visibility = "visible"
     } else {
         sbox.style.visibility = "hidden"
     }
 
-    sbox.style.top = `${parseInt(pos[0])*cellSize}px`
-    sbox.style.left = `${parseInt(pos[1])*cellSize}px`
+    sbox.style.top = `${parseInt(pos[0]) * cellSize}px`
+    sbox.style.left = `${parseInt(pos[1]) * cellSize}px`
 }
-function updatePiece() {
+
+/**
+ * @param {HTMLElement} element 
+ */
+function updatePiece(element) { //Update position ONLY
+    var pos = element.id.slice(1)
+
+    element.style.top = `${parseInt(pos[0]) * cellSize}px`;
+    element.style.left = `${parseInt(pos[1]) * cellSize}px`;
+}
+
+function updatePieces() { //Should be called ONLY ONCE
     document.querySelectorAll(".piece").forEach(element => {
-        var classL = element.classList
-        var pos = classL[1]
-        var type = classL[2]
+        updatePiece(element)
+        element.style.backgroundImage = `url(${pieceData + element.classList[2] + '.png'})`
+        element.addEventListener("click", function (event){
+            if (!whiteTurn){
+                return
+            }
 
-        element.style.top = `${parseInt(pos[0])*cellSize}px`;
-        element.style.left = `${parseInt(pos[1])*cellSize}px`;
+            var targetPiece = event.target;
+            var pos = targetPiece.id.slice(1);
 
-        element.style.backgroundImage=`url(${pieceData+type+'.png'})`
+            updateSelectBox(pos, true)
+        })
     })
 }
 
-updatePiece()
+document.addEventListener("click", function (event){
+    if (!chessroot.contains(event.target)){
+        updateSelectBox()
+    }
+})
+
+updatePieces()
 updateSelectBox()
