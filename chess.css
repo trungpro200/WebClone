@@ -1,0 +1,41 @@
+#chessboard {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.chessrow {
+    display: flex;
+    flex-direction: row;
+    width: min-content;
+}
+
+.cell {
+    width: 65px;
+    height: 65px;
+}
+.black {
+    background-color: #729551;
+}
+
+.white {
+    background-color: #ececd0;
+}
+.piece {
+    height: 65px;
+    width: 65px;
+    position: absolute;
+    background-size: 100%;
+    cursor: -webkit-grab;
+}
+#select-box {
+    position: absolute;
+    height: 65px;
+    width: 65px;
+    background-color: rgba(255,255,0,.4);
+    visibility:hidden;
+}
