@@ -36,6 +36,7 @@
     position: absolute;
     background-size: 100%;
     cursor: -webkit-grab;
+    z-index: 3;
 }
 #select-box {
     position: absolute;
@@ -43,6 +44,7 @@
     width: 65px;
     background-color: rgba(255,255,0,.4);
     visibility:hidden;
+    z-index: 2;
 }
 
 .numLabel {
@@ -56,4 +58,9 @@
     background-color: transparent;
     right: 2px;
     bottom: 1px;
+}
+#hints{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

@@ -80,6 +80,12 @@ function updatePieces() { //Should be called ONLY ONCE
         })
     })
 }
+/**
+ * @param {Number} cel
+ */
+function int2ChessNot(cel){
+    
+}
 
 document.addEventListener("click", function (event){
     if (!chessroot.contains(event.target)){
