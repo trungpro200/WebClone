@@ -1,7 +1,7 @@
 import * as jsChessEngine from './node_modules/js-chess-engine/lib/js-chess-engine.mjs'
 const game = new jsChessEngine.Game()
 var whiteTurn = true
-var aiLevel = 2
+var aiLevel = 1
 
 var pieceData = "https://assets-themes.chess.com/image/ejgfv/150/"
 var chessroot = document.getElementById("chessboard")
@@ -55,7 +55,7 @@ function updateSelectBox(newPos = "", show = false) {
 
     sbox.style.top = `${parseInt(pos[0]) * cellSize}px`
     sbox.style.left = `${parseInt(pos[1]) * cellSize}px`
-    console.log(show)
+    // console.log(show)
     // console.log(chessNot2Int(int2ChessNot(pos)))
 }
 
@@ -136,9 +136,9 @@ function chessNot2Int(not) {
  * @param {{ moves: Array.<Array<String>>, captured: String }} infoJson
  */
 function movePiece(infoJson) {
-    console.log(infoJson)
+    // console.log(infoJson)
     infoJson.moves.forEach(([pos1, pos2]) => {
-        console.log(pos1, pos2)
+        // console.log(pos1, pos2)
         pos1 = chessNot2Int(pos1)
         pos2 = chessNot2Int(pos2)
         var targetPiece = document.getElementById(`p${pos2}`)
@@ -151,6 +151,9 @@ function movePiece(infoJson) {
         if (targetPiece) {
             targetPiece.remove()
         }
+    })
+    infoJson.captured.forEach((p)=>{
+        var tg = document.getElementById(`p${chessNot2Int(p)}`).remove()
     })
 
     return new Promise((resolve) => {
@@ -167,7 +170,7 @@ function robotMove() {
 
 document.addEventListener("click", function (event) {
     if (!chessroot.contains(event.target)) {
-        console.log("Cleared cus out of range")
+        // console.log("Cleared cus out of range")
         updateSelectBox()
         clearHints()
     }
@@ -180,7 +183,7 @@ chessroot.addEventListener("click", async function (event) {
         return
     }
 
-    console.log(selBox.style.visibility)
+    // console.log(selBox.style.visibility)
 
     const rect = this.getBoundingClientRect()
 
@@ -201,6 +204,8 @@ chessroot.addEventListener("click", async function (event) {
     if (selBox.style.visibility=='hidden'){
         selBox.style.visibility = 'visible'
         return
+    } else { //being show
+
     }
     
 
@@ -222,8 +227,6 @@ chessroot.addEventListener("click", async function (event) {
 
     robotMove()
     whiteTurn = true
-
-
 })
 
 updatePieces()
