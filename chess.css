@@ -52,7 +52,6 @@
     height: 65px;
     width: 65px;
     background-color: rgba(255,255,0,.4);
-    visibility:hidden;
     z-index: 2;
 }
 
@@ -104,4 +103,12 @@
     height: calc(var(--chess-cell-size) - 2*var(--capture-hint-thickness));
     border-radius: 50%;
     z-index: 4;
+}
+
+.lastMove {
+    position: absolute;
+    background-color: rgba(255,255,0,.4);
+    width: var(--chess-cell-size);
+    height: var(--chess-cell-size);
+    z-index: 2;
 }

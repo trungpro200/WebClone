@@ -43,15 +43,18 @@ function updateSelectBox(newPos = "", show = false) {
 
     if (newPos) {
         sbox.className = newPos
+    } else {
+        sbox.style.visibility = "hidden"
+        return
     }
 
     var pos = sbox.className
 
-    if (show) {
-        sbox.style.visibility = "visible"
-    } else {
-        sbox.style.visibility = "hidden"
-    }
+    // if (show) {
+    //     sbox.style.visibility = "visible"
+    // } else {
+    //     sbox.style.visibility = "hidden"
+    // }
 
     sbox.style.top = `${parseInt(pos[0]) * cellSize}px`
     sbox.style.left = `${parseInt(pos[1]) * cellSize}px`
@@ -111,7 +114,9 @@ function updatePieces() { //Should be called ONLY ONCE
 }
 
 function clearHints() {
-    document.getElementById("hints").innerHTML = ''
+    document.querySelectorAll(".hint, .hint-capture").forEach((element)=>{
+        element.remove();
+    })
 }
 
 /**
@@ -156,6 +161,8 @@ function movePiece(infoJson) {
         var tg = document.getElementById(`p${chessNot2Int(p)}`).remove()
     })
 
+    updateLastmoveHint(infoJson.moves[0])
+
     return new Promise((resolve) => {
         setTimeout(resolve, 200)
     })
@@ -166,6 +173,38 @@ function robotMove() {
 
     movePiece(aiM)
 
+}
+
+/**
+ * @param {String} pos 
+ */
+function createHighlight(pos){
+    pos = chessNot2Int(pos)
+
+    var hl = document.createElement("div")
+    hl.className = "lastMove"
+
+    hl.style.top = `${parseInt(pos[0])*cellSize}px`
+    hl.style.left = `${parseInt(pos[1])*cellSize}px`
+
+    document.getElementById("hints").appendChild(hl)
+}
+
+function removeHighlights(){
+    document.querySelectorAll(".lastMove").forEach((element)=>{
+        element.remove();
+    })
+}
+
+/**
+ * @param {String[]} move 
+ */
+function updateLastmoveHint(move){
+    removeHighlights()
+
+    move.forEach((pos)=>{
+        createHighlight(pos)
+    })
 }
 
 document.addEventListener("click", function (event) {
@@ -183,7 +222,7 @@ chessroot.addEventListener("click", async function (event) {
         return
     }
 
-    // console.log(selBox.style.visibility)
+    // console.log("clicked")
 
     const rect = this.getBoundingClientRect()
 
@@ -201,32 +240,42 @@ chessroot.addEventListener("click", async function (event) {
     var posCNOrigin = int2ChessNot(selBox.className)    //Move from
 
     //Move
-    if (selBox.style.visibility=='hidden'){
-        selBox.style.visibility = 'visible'
+    if (selBox.style.visibility=="hidden"){
+        selBox.style.visibility = "visible"
+        // console.log("coming to life?")
         return
     } else { //being show
+        // console.log("trying to move")
+        try {
+            if (selPiece.classList.item(2)){
+                if (selPiece.classList.item(2)[0]=="w"){
+                    updateSelectBox(posInt, true)
+                    return;
+                }
+            }
+        } catch (error) {
+            
+        }
+        
+        var moved = game.move(posCNOrigin, posCN)
 
-    }
+        if (!moved) {
+            selBox.style.visibility = 'hidden'
+            clearHints()
+            return
+        }
     
-
+        whiteTurn = false;
     
-
-    var moved = game.move(posCNOrigin, posCN)
-
-    if (!moved) {
-        return
+        selBox.style.visibility = 'hidden'
+        clearHints()
+    
+        await movePiece(moved)
+        // console.log(moved)
+    
+        robotMove()
+        whiteTurn = true
     }
-
-    whiteTurn = false;
-
-    selBox.style.visibility = 'hidden'
-    clearHints()
-
-    await movePiece(moved)
-    // console.log(moved)
-
-    robotMove()
-    whiteTurn = true
 })
 
 updatePieces()
