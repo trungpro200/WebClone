@@ -8,6 +8,11 @@ var chessroot = document.getElementById("chessboard")
 
 var cellSize = 65
 
+var moveSound = new Audio("Sounds/move-self.mp3")
+var captSound = new Audio("Sounds/capture.mp3")
+var checkSound = new Audio("Sounds/move-check.mp3")
+var castSound = new Audio("Sounds/castle.mp3")
+
 var board = [
     ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
     ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
@@ -142,37 +147,62 @@ function chessNot2Int(not) {
  */
 function movePiece(infoJson) {
     // console.log(infoJson)
+    var played = false
+
+    if (game.board.hasPlayingPlayerCheck()||game.board.hasNonPlayingPlayerCheck()){
+        played = true;
+        checkSound.play();
+    }
+
     infoJson.moves.forEach(([pos1, pos2]) => {
         // console.log(pos1, pos2)
         pos1 = chessNot2Int(pos1)
         pos2 = chessNot2Int(pos2)
+
         var targetPiece = document.getElementById(`p${pos2}`)
         var movingPiece = document.getElementById(`p${pos1}`)
-
 
         movingPiece.id = `p${pos2}`
         updatePiece(movingPiece)
 
         if (targetPiece) {
-            targetPiece.remove()
+            capturePiece(targetPiece, !played)
+            played = true
         }
     })
     infoJson.captured.forEach((p)=>{
-        var tg = document.getElementById(`p${chessNot2Int(p)}`).remove()
+        var tg = document.getElementById(`p${chessNot2Int(p)}`)
+        capturePiece(tg)
+        played=true
     })
+    if (!played){
+        moveSound.play()
+    }
 
     updateLastmoveHint(infoJson.moves[0])
+
 
     return new Promise((resolve) => {
         setTimeout(resolve, 200)
     })
 }
 
+/**
+ * 
+ * @param {HTMLElement} piece 
+ */
+function capturePiece(piece, s = false){
+    if (s){
+        captSound.play()
+    }
+    piece.remove()
+}
+
 function robotMove() {
+
     var aiM = game.aiMove(aiLevel)
 
     movePiece(aiM)
-
 }
 
 /**
@@ -216,6 +246,7 @@ document.addEventListener("click", function (event) {
 })
 
 chessroot.addEventListener("click", async function (event) {
+    
     var selBox = document.getElementById("select-box")
 
     if (!whiteTurn) {
@@ -240,7 +271,7 @@ chessroot.addEventListener("click", async function (event) {
     var posCNOrigin = int2ChessNot(selBox.className)    //Move from
 
     //Move
-    if (selBox.style.visibility=="hidden"){
+    if (selBox.style.visibility=="hidden"&&document.getElementById(`p${posInt}`)){
         selBox.style.visibility = "visible"
         // console.log("coming to life?")
         return
@@ -271,10 +302,18 @@ chessroot.addEventListener("click", async function (event) {
         clearHints()
     
         await movePiece(moved)
-        // console.log(moved)
-    
-        robotMove()
+        console.log(moved)
+        
+        setTimeout(robotMove, 750)
         whiteTurn = true
+        console.log(game.board.configuration)
+        if (game.board.configuration){
+            console.log("mated")
+            removeHighlights()
+            updateSelectBox()
+            this.removeEventListener("click",this)
+            document.removeEventListener("click",document)
+        }
     }
 })
 
