@@ -24,3 +24,21 @@ a {
     display: flex;
     flex-direction: row;
 }
+#controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#controls button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #729551;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#controls button:hover {
+    background-color: #56723c;
+}
