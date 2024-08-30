@@ -13,32 +13,40 @@ var captSound = new Audio("Sounds/capture.mp3")
 var checkSound = new Audio("Sounds/move-check.mp3")
 var castSound = new Audio("Sounds/castle.mp3")
 
-var board = [
-    ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
-    ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
-    ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"]
-]
+// var board = [
+//     ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
+//     ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
+//     ["", "", "", "", "", "", "", ""],
+//     ["", "", "", "", "", "", "", ""],
+//     ["", "", "", "", "", "", "", ""],
+//     ["", "", "", "", "", "", "", ""],
+//     ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
+//     ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"]
+// ]
 
-for (var row = 0; row < 8; row++) {
-    for (var col = 0; col < 8; col++) {
-        if (!board[row][col]) {
-            continue
-        }
 
-        var piece = document.createElement("div")
-        piece.classList.add("piece")
-        piece.classList.add(String(row) + col)
-        piece.classList.add(board[row][col])
 
-        piece.id = `p${row}${col}`
-
-        chessroot.appendChild(piece)
+// console.log(game.board.configuration.pieces)
+function checkCase(char) {
+    if (/[A-Z]/.test(char)) {
+        return 'w';
+    } else if (/[a-z]/.test(char)) {
+        return 'b';
     }
+}
+
+for (var [pos, piece] of Object.entries(game.board.configuration.pieces)){
+    piece = `${checkCase(piece)}${piece.toLowerCase()}`
+    pos = chessNot2Int(pos)
+
+    var p = document.createElement("div")
+    p.id = `p${pos}`
+
+    p.classList.add("piece")
+    p.classList.add(pos)
+    p.classList.add(piece)
+
+    chessroot.appendChild(p)
 }
 
 
