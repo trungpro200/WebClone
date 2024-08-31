@@ -1,5 +1,5 @@
 import * as jsChessEngine from './node_modules/js-chess-engine/lib/js-chess-engine.mjs'
-const game = new jsChessEngine.Game()
+var game = new jsChessEngine.Game()
 var whiteTurn = true
 var aiLevel = 1
 
@@ -13,20 +13,6 @@ var captSound = new Audio("Sounds/capture.mp3")
 var checkSound = new Audio("Sounds/move-check.mp3")
 var castSound = new Audio("Sounds/castle.mp3")
 
-// var board = [
-//     ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
-//     ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
-//     ["", "", "", "", "", "", "", ""],
-//     ["", "", "", "", "", "", "", ""],
-//     ["", "", "", "", "", "", "", ""],
-//     ["", "", "", "", "", "", "", ""],
-//     ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
-//     ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"]
-// ]
-
-
-
-// console.log(game.board.configuration.pieces)
 function checkCase(char) {
     if (/[A-Z]/.test(char)) {
         return 'w';
@@ -34,22 +20,22 @@ function checkCase(char) {
         return 'b';
     }
 }
+function createPiece(){
+    for (var [pos, piece] of Object.entries(game.board.configuration.pieces)) {
+        piece = `${checkCase(piece)}${piece.toLowerCase()}`
+        pos = chessNot2Int(pos)
 
-for (var [pos, piece] of Object.entries(game.board.configuration.pieces)){
-    piece = `${checkCase(piece)}${piece.toLowerCase()}`
-    pos = chessNot2Int(pos)
+        var p = document.createElement("div")
+        p.id = `p${pos}`
 
-    var p = document.createElement("div")
-    p.id = `p${pos}`
+        p.classList.add("piece")
+        p.classList.add(pos)
+        p.classList.add(piece)
 
-    p.classList.add("piece")
-    p.classList.add(pos)
-    p.classList.add(piece)
-
-    chessroot.appendChild(p)
+        chessroot.appendChild(p)
+    }
 }
-
-
+createPiece()
 
 function updateSelectBox(newPos = "", show = false) {
     var sbox = document.getElementById("select-box")
@@ -117,7 +103,7 @@ function updatePieces() { //Should be called ONLY ONCE
 
             if (this.classList[2][0] == 'w') {
                 createHints(game.moves(int2ChessNot(pos)))
-            } else if (this.classList[2][0] == 'b'&&document.getElementById("select-box").style.visibility=="visible"){
+            } else if (this.classList[2][0] == 'b' && document.getElementById("select-box").style.visibility == "visible") {
                 return
             }
 
@@ -127,7 +113,7 @@ function updatePieces() { //Should be called ONLY ONCE
 }
 
 function clearHints() {
-    document.querySelectorAll(".hint, .hint-capture").forEach((element)=>{
+    document.querySelectorAll(".hint, .hint-capture").forEach((element) => {
         element.remove();
     })
 }
@@ -157,7 +143,7 @@ function movePiece(infoJson) {
     // console.log(infoJson)
     var played = false
 
-    if (game.board.hasPlayingPlayerCheck()||game.board.hasNonPlayingPlayerCheck()){
+    if (game.board.hasPlayingPlayerCheck() || game.board.hasNonPlayingPlayerCheck()) {
         played = true;
         checkSound.play();
     }
@@ -178,12 +164,12 @@ function movePiece(infoJson) {
             played = true
         }
     })
-    infoJson.captured.forEach((p)=>{
+    infoJson.captured.forEach((p) => {
         var tg = document.getElementById(`p${chessNot2Int(p)}`)
         capturePiece(tg)
-        played=true
+        played = true
     })
-    if (!played){
+    if (!played) {
         moveSound.play()
     }
 
@@ -199,48 +185,59 @@ function movePiece(infoJson) {
  * 
  * @param {HTMLElement} piece 
  */
-function capturePiece(piece, s = false){
-    if (s){
+function capturePiece(piece, s = false) {
+    if (s) {
         captSound.play()
     }
     piece.remove()
 }
 
 function robotMove() {
-
+    if (game.board.configuration.checkMate||whiteTurn){
+        console.log(whiteTurn)
+        return
+    }
     var aiM = game.aiMove(aiLevel)
 
     movePiece(aiM)
+    whiteTurn = true
 }
 
 /**
  * @param {String} pos 
  */
-function createHighlight(pos){
+function createHighlight(pos) {
     pos = chessNot2Int(pos)
 
     var hl = document.createElement("div")
     hl.className = "lastMove"
 
-    hl.style.top = `${parseInt(pos[0])*cellSize}px`
-    hl.style.left = `${parseInt(pos[1])*cellSize}px`
+    hl.style.top = `${parseInt(pos[0]) * cellSize}px`
+    hl.style.left = `${parseInt(pos[1]) * cellSize}px`
 
     document.getElementById("hints").appendChild(hl)
 }
 
-function removeHighlights(){
-    document.querySelectorAll(".lastMove").forEach((element)=>{
+function removeHighlights() {
+    document.querySelectorAll(".lastMove").forEach((element) => {
         element.remove();
     })
 }
 
+function removePieces(){
+    document.querySelectorAll(".piece").forEach(p=>{
+        p.remove()
+    })
+}
+
+
 /**
  * @param {String[]} move 
  */
-function updateLastmoveHint(move){
+function updateLastmoveHint(move) {
     removeHighlights()
 
-    move.forEach((pos)=>{
+    move.forEach((pos) => {
         createHighlight(pos)
     })
 }
@@ -253,8 +250,20 @@ document.addEventListener("click", function (event) {
     }
 })
 
-chessroot.addEventListener("click", async function (event) {
+document.getElementById("restart").addEventListener("click", e=>{
+    whiteTurn=true
+    removePieces()
+    removeHighlights()
+    clearHints()
+
+    game = new jsChessEngine.Game()
+    createPiece()
+    updatePieces()
+})
+
+async function onClickBoard(event) {
     
+
     var selBox = document.getElementById("select-box")
 
     if (!whiteTurn) {
@@ -279,23 +288,23 @@ chessroot.addEventListener("click", async function (event) {
     var posCNOrigin = int2ChessNot(selBox.className)    //Move from
 
     //Move
-    if (selBox.style.visibility=="hidden"&&document.getElementById(`p${posInt}`)){
+    if (selBox.style.visibility == "hidden" && document.getElementById(`p${posInt}`)) {
         selBox.style.visibility = "visible"
         // console.log("coming to life?")
         return
     } else { //being show
         // console.log("trying to move")
         try {
-            if (selPiece.classList.item(2)){
-                if (selPiece.classList.item(2)[0]=="w"){
+            if (selPiece.classList.item(2)) {
+                if (selPiece.classList.item(2)[0] == "w") {
                     updateSelectBox(posInt, true)
                     return;
                 }
             }
         } catch (error) {
-            
+
         }
-        
+
         var moved = game.move(posCNOrigin, posCN)
 
         if (!moved) {
@@ -303,27 +312,31 @@ chessroot.addEventListener("click", async function (event) {
             clearHints()
             return
         }
-    
+
         whiteTurn = false;
-    
+
         selBox.style.visibility = 'hidden'
         clearHints()
-    
+
         await movePiece(moved)
-        console.log(moved)
-        
+        // console.log(moved)
+
         setTimeout(robotMove, 750)
-        whiteTurn = true
+
+        
+
         console.log(game.board.configuration)
-        if (game.board.configuration){
+
+        if (game.board.configuration.checkMate) {
             console.log("mated")
             removeHighlights()
             updateSelectBox()
-            this.removeEventListener("click",this)
-            document.removeEventListener("click",document)
+            this.removeEventListener("click", onClickBoard)
         }
     }
-})
+}
+
+chessroot.addEventListener("click", onClickBoard)
 
 updatePieces()
 updateSelectBox()

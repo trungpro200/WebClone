@@ -32,13 +32,15 @@ a {
 #controls button {
     padding: 10px 20px;
     margin: 5px;
-    background-color: #729551;
+    background-color: #759954;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: opacity 0.25s;
+    opacity: 1;
 }
 
 #controls button:hover {
-    background-color: #56723c;
+    opacity: 0.8;
 }
