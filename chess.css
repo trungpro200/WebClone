@@ -1,7 +1,7 @@
 :root {
     --chess-cell-size: 65px;
     --capture-hint-thickness: 4px;
-    --piece-transition-time: 0.15s;
+    --piece-transition-time: 0.2s;
 }
 
 #chessboard {
@@ -13,6 +13,7 @@
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .chessrow {
@@ -25,7 +26,7 @@
     width: var(--chess-cell-size);
     height: var(--chess-cell-size);
     position: relative;
-    pointer-events: none;
+    pointer-events: none;   
 }
 .black {
     background-color: #729551;
@@ -71,6 +72,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hint, .hint-capture{
