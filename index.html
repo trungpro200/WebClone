@@ -10,137 +10,147 @@
 </head>
 
 <body>
-    <div class="background-container">
-        <header>
+    <header>
+        <div id = "sidebar" class="sidebar">
+            <button class="closebtn" onclick="closeNav()"> Close </button>
+            <a href="#">abcd</a>
+        </div>
 
-        </header>
+        <div id="main">
+            <button class="closebtn" onclick="openNav()">&#9776;</button>
+         
+        </div>
+    </header>
 
 
-        <main>
+    <main>
 
-            <div id="chessboard">
-                <div id="select-box" class="06" style="visibility: hidden;"></div>
-                <div id="hints"></div>
-                <div id="row0" class="chessrow white">
-                    <div id="00" class="cell white"></div>
-                    <div id="01" class="cell black"></div>
-                    <div id="02" class="cell white"></div>
-                    <div id="03" class="cell black"></div>
-                    <div id="04" class="cell white"></div>
-                    <div id="05" class="cell black"></div>
-                    <div id="06" class="cell white"></div>
-                    <div id="07" class="cell black"></div>
-                    <div class="numLabel white">8</div>
-                </div>
-                <div id="row1" class="chessrow black">
-                    <div id="10" class="cell black"></div>
-                    <div id="11" class="cell white"></div>
-                    <div id="12" class="cell black"></div>
-                    <div id="13" class="cell white"></div>
-                    <div id="14" class="cell black"></div>
-                    <div id="15" class="cell white"></div>
-                    <div id="16" class="cell black"></div>
-                    <div id="17" class="cell white"></div>
-                    <div class="numLabel black">7</div>
-                </div>
-                <div id="row2" class="chessrow white">
-                    <div id="20" class="cell white"></div>
-                    <div id="21" class="cell black"></div>
-                    <div id="22" class="cell white"></div>
-                    <div id="23" class="cell black"></div>
-                    <div id="24" class="cell white"></div>
-                    <div id="25" class="cell black"></div>
-                    <div id="26" class="cell white"></div>
-                    <div id="27" class="cell black"></div>
-                    <div class="numLabel white">6</div>
-                </div>
-                <div id="row3" class="chessrow black">
-                    <div id="30" class="cell black"></div>
-                    <div id="31" class="cell white"></div>
-                    <div id="32" class="cell black"></div>
-                    <div id="33" class="cell white"></div>
-                    <div id="34" class="cell black"></div>
-                    <div id="35" class="cell white"></div>
-                    <div id="36" class="cell black"></div>
-                    <div id="37" class="cell white"></div>
-                    <div class="numLabel black">5</div>
-                </div>
-                <div id="row4" class="chessrow white">
-                    <div id="40" class="cell white"></div>
-                    <div id="41" class="cell black"></div>
-                    <div id="42" class="cell white"></div>
-                    <div id="43" class="cell black"></div>
-                    <div id="44" class="cell white"></div>
-                    <div id="45" class="cell black"></div>
-                    <div id="46" class="cell white"></div>
-                    <div id="47" class="cell black"></div>
-                    <div class="numLabel white">4</div>
-                </div>
-                <div id="row5" class="chessrow black">
-                    <div id="50" class="cell black"></div>
-                    <div id="51" class="cell white"></div>
-                    <div id="52" class="cell black"></div>
-                    <div id="53" class="cell white"></div>
-                    <div id="54" class="cell black"></div>
-                    <div id="55" class="cell white"></div>
-                    <div id="56" class="cell black"></div>
-                    <div id="57" class="cell white"></div>
-                    <div class="numLabel black">3</div>
-                </div>
-                <div id="row6" class="chessrow white">
-                    <div id="60" class="cell white"></div>
-                    <div id="61" class="cell black"></div>
-                    <div id="62" class="cell white"></div>
-                    <div id="63" class="cell black"></div>
-                    <div id="64" class="cell white"></div>
-                    <div id="65" class="cell black"></div>
-                    <div id="66" class="cell white"></div>
-                    <div id="67" class="cell black"></div>
-                    <div class="numLabel white">2</div>
-                </div>
-                <div id="row7" class="chessrow black">
-                    <div id="70" class="cell black">
-                        <div class="charLabel black">a</div>
-                    </div>
-                    <div id="71" class="cell white">
-                        <div class="charLabel white">b</div>
-                    </div>
-                    <div id="72" class="cell black">
-                        <div class="charLabel black">c</div>
-                    </div>
-                    <div id="73" class="cell white">
-                        <div class="charLabel white">d</div>
-                    </div>
-                    <div id="74" class="cell black">
-                        <div class="charLabel black">e</div>
-                    </div>
-                    <div id="75" class="cell white">
-                        <div class="charLabel white">f</div>
-                    </div>
-                    <div id="76" class="cell black">
-                        <div class="charLabel black">g</div>
-                    </div>
-                    <div id="77" class="cell white">
-                        <div class="charLabel white">h</div>
-                    </div>
-                    <div class="numLabel black">1</div>
-                </div>
+        <div id="chessboard">
+            <div id="select-box" class="06" style="visibility: hidden;"></div>
+            <div id="hints"></div>
+            <div id="row0" class="chessrow white">
+                <div id="00" class="cell white"></div>
+                <div id="01" class="cell black"></div>
+                <div id="02" class="cell white"></div>
+                <div id="03" class="cell black"></div>
+                <div id="04" class="cell white"></div>
+                <div id="05" class="cell black"></div>
+                <div id="06" class="cell white"></div>
+                <div id="07" class="cell black"></div>
+                <div class="numLabel white">8</div>
             </div>
-            <div id="controls">
-                <button id="restart">
-                    <p class="res"> &#8634; </p>
-                </button>
-                <button id="undo">
-                    <p class="Undo"> &#8634; </p>
-                </button>
+            <div id="row1" class="chessrow black">
+                <div id="10" class="cell black"></div>
+                <div id="11" class="cell white"></div>
+                <div id="12" class="cell black"></div>
+                <div id="13" class="cell white"></div>
+                <div id="14" class="cell black"></div>
+                <div id="15" class="cell white"></div>
+                <div id="16" class="cell black"></div>
+                <div id="17" class="cell white"></div>
+                <div class="numLabel black">7</div>
             </div>
-            <div id="game-over" style="display: none;">Game Over! Checkmate!</div>
-        </main>
-    </div>
+            <div id="row2" class="chessrow white">
+                <div id="20" class="cell white"></div>
+                <div id="21" class="cell black"></div>
+                <div id="22" class="cell white"></div>
+                <div id="23" class="cell black"></div>
+                <div id="24" class="cell white"></div>
+                <div id="25" class="cell black"></div>
+                <div id="26" class="cell white"></div>
+                <div id="27" class="cell black"></div>
+                <div class="numLabel white">6</div>
+            </div>
+            <div id="row3" class="chessrow black">
+                <div id="30" class="cell black"></div>
+                <div id="31" class="cell white"></div>
+                <div id="32" class="cell black"></div>
+                <div id="33" class="cell white"></div>
+                <div id="34" class="cell black"></div>
+                <div id="35" class="cell white"></div>
+                <div id="36" class="cell black"></div>
+                <div id="37" class="cell white"></div>
+                <div class="numLabel black">5</div>
+            </div>
+            <div id="row4" class="chessrow white">
+                <div id="40" class="cell white"></div>
+                <div id="41" class="cell black"></div>
+                <div id="42" class="cell white"></div>
+                <div id="43" class="cell black"></div>
+                <div id="44" class="cell white"></div>
+                <div id="45" class="cell black"></div>
+                <div id="46" class="cell white"></div>
+                <div id="47" class="cell black"></div>
+                <div class="numLabel white">4</div>
+            </div>
+            <div id="row5" class="chessrow black">
+                <div id="50" class="cell black"></div>
+                <div id="51" class="cell white"></div>
+                <div id="52" class="cell black"></div>
+                <div id="53" class="cell white"></div>
+                <div id="54" class="cell black"></div>
+                <div id="55" class="cell white"></div>
+                <div id="56" class="cell black"></div>
+                <div id="57" class="cell white"></div>
+                <div class="numLabel black">3</div>
+            </div>
+            <div id="row6" class="chessrow white">
+                <div id="60" class="cell white"></div>
+                <div id="61" class="cell black"></div>
+                <div id="62" class="cell white"></div>
+                <div id="63" class="cell black"></div>
+                <div id="64" class="cell white"></div>
+                <div id="65" class="cell black"></div>
+                <div id="66" class="cell white"></div>
+                <div id="67" class="cell black"></div>
+                <div class="numLabel white">2</div>
+            </div>
+            <div id="row7" class="chessrow black">
+                <div id="70" class="cell black">
+                    <div class="charLabel black">a</div>
+                </div>
+                <div id="71" class="cell white">
+                    <div class="charLabel white">b</div>
+                </div>
+                <div id="72" class="cell black">
+                    <div class="charLabel black">c</div>
+                </div>
+                <div id="73" class="cell white">
+                    <div class="charLabel white">d</div>
+                </div>
+                <div id="74" class="cell black">
+                    <div class="charLabel black">e</div>
+                </div>
+                <div id="75" class="cell white">
+                    <div class="charLabel white">f</div>
+                </div>
+                <div id="76" class="cell black">
+                    <div class="charLabel black">g</div>
+                </div>
+                <div id="77" class="cell white">
+                    <div class="charLabel white">h</div>
+                </div>
+                <div class="numLabel black">1</div>
+            </div>
+        </div>
+        <div id="controls">
+            <button id="restart">
+                <p class="res"> &#8634; </p>
+            </button>
+            <button id="undo">
+                <p class="Undo"> &#8634; </p>
+            </button>
+        </div>
+
+       
+
+    </main>
+
     <footer>
     </footer>
 
 </body>
 <script src="piece.js" type="module"></script>
+<script src="sidebar.js"></script>
 
 </html>

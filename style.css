@@ -2,6 +2,7 @@ html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
 }
+
 body {
     background-color: #2f2e2a;
 }
@@ -20,21 +21,23 @@ a {
     display: flex;
     float: right;
 }
+
 .misc div {
     display: flex;
     flex-direction: row;
 }
+
 #controls {
     text-align: center;
-    
+
 }
 
-#controls  {
-    margin: 5px; 
+#controls {
+    margin: 5px;
     color: white;
     border-radius: 5px;
     transition: opacity 0.25s;
-    padding:  10px;
+    padding: 10px;
 }
 
 #restart {
@@ -47,24 +50,83 @@ a {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-#undo{
-    background-color:#81b64c ;
+#undo {
+    background-color: #81b64c;
     border-radius: 5px;
     width: 80px;
     height: 40px;
     margin-top: 20px;
-    border : none ;
+    border: none;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-.Undo{
-    color:  white;
+.Undo {
+    color: white;
     font-size: 20px;
-    transform:rotate(300deg);
+    transform: rotate(300deg);
 }
-.res{
-    color:  white;
+
+.res {
+    color: white;
     font-size: 20px;
-    transform:rotate(300deg);
+    transform: rotate(300deg);
     text-align: center;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #81b64c;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+}
+.closeNav{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #f1f1f1;
+    padding: 10px 10px;
+    border-radius: 9px;
+    border: 0;
+    margin-top: 70%;
+    margin-left: 5px;
+}
+.openNav{
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 9px;
+    border: none;
+    visibility: visible;
+}
+.sidebar a {
+    padding: 8px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidebar a:hover{
+    font-size: 1.6em;
+    font-weight: bold;
+    color: red;
+    background-color: #f1f1f1;
+    margin: 0 15px 15px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+.openbtn:hover{
+    background-color: #444;
+}
+#main{
+    transition: margin-left 0.5s;
+    padding: 16px;
 }
