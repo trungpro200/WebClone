@@ -26,8 +26,9 @@
     width: var(--chess-cell-size);
     height: var(--chess-cell-size);
     position: relative;
-    pointer-events: none;   
+    pointer-events: none;
 }
+
 .black {
     background-color: #729551;
     color: #ececd0;
@@ -39,6 +40,7 @@
     color: #729551;
     font-weight: bold;
 }
+
 .piece {
     height: 65px;
     width: 65px;
@@ -48,11 +50,12 @@
     z-index: 3;
     transition: top var(--piece-transition-time), left var(--piece-transition-time);
 }
+
 #select-box {
     position: absolute;
     height: 65px;
     width: 65px;
-    background-color: rgba(255,255,0,.4);
+    background-color: rgba(255, 255, 0, .4);
     z-index: 2;
 }
 
@@ -62,20 +65,23 @@
     margin-top: 2px;
     margin-left: 3px;
 }
+
 .charLabel {
     position: absolute;
     background-color: transparent;
     right: 2px;
     bottom: 1px;
 }
-#hints{
+
+#hints {
     position: absolute;
     width: 100%;
     height: 100%;
-     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-.hint, .hint-capture{
+.hint,
+.hint-capture {
     position: absolute;
     display: flex;
     width: var(--chess-cell-size);
@@ -85,7 +91,7 @@
     top: calc(var(--chess-cell-size)*2);
 }
 
-.hint::before{
+.hint::before {
     position: relative;
     display: block;
     content: "";
@@ -97,7 +103,7 @@
     z-index: 4;
 }
 
-.hint-capture::before{
+.hint-capture::before {
     position: absolute;
     content: "";
     border: rgba(0, 0, 0, 0.14) solid var(--capture-hint-thickness);
@@ -109,7 +115,7 @@
 
 .lastMove {
     position: absolute;
-    background-color: rgba(255,255,0,.4);
+    background-color: rgba(255, 255, 0, .4);
     width: var(--chess-cell-size);
     height: var(--chess-cell-size);
     z-index: 2;

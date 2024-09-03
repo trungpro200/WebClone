@@ -4,7 +4,12 @@ html {
 }
 
 body {
-    background-color: #2f2e2a;
+    background-image: url(https://i.pinimg.com/564x/aa/26/b8/aa26b84de95051ade9a2f9aead6f0eae.jpg);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+   
+
 }
 
 header {
@@ -15,16 +20,6 @@ header {
 a {
     color: white;
     text-decoration: none;
-}
-
-.misc {
-    display: flex;
-    float: right;
-}
-
-.misc div {
-    display: flex;
-    flex-direction: row;
 }
 
 #controls {
@@ -85,7 +80,8 @@ a {
     transition: 0.5s;
     padding-top: 10px;
 }
-.closeNav{
+
+.closeNav {
     font-size: 20px;
     cursor: pointer;
     background-color: transparent;
@@ -96,7 +92,8 @@ a {
     margin-top: 70%;
     margin-left: 5px;
 }
-.openNav{
+
+.openNav {
     font-size: 20px;
     cursor: pointer;
     background-color: #111;
@@ -114,19 +111,22 @@ a {
     display: block;
     transition: 0.3s;
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     font-size: 1.6em;
     font-weight: bold;
-    color: red;
+    color: rgb(23, 234, 122);
     background-color: #f1f1f1;
     margin: 0 15px 15px 15px;
     border-radius: 8px;
     text-decoration: none;
 }
-.openbtn:hover{
+
+.openbtn:hover {
     background-color: #444;
 }
-#main{
+
+#main {
     transition: margin-left 0.5s;
     padding: 16px;
 }
