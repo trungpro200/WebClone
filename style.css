@@ -4,13 +4,7 @@ html {
 }
 
 body {
-    /* background-image: url("https://i.pinimg.com/564x/aa/26/b8/aa26b84de95051ade9a2f9aead6f0eae.jpg"); */
     background-color: #cac4c4;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-
 }
 
 header {
@@ -20,13 +14,10 @@ header {
 }
 
 main {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
+
 
 #controls {
     text-align: center;
@@ -106,7 +97,6 @@ a {
     color: #f1f1f1;
     padding: 10px 15px;
     border-radius: 9px;
-    border: none;
     visibility: visible;
 }
 
@@ -131,6 +121,7 @@ a {
 
 .openbtn:hover {
     background-color: #444;
+    opacity: 0.5;
 }
 
 #main {
@@ -139,23 +130,34 @@ a {
 }
 
 .openbtn {
-    font-size: 20px;
+    font-size: 150%;
+    background-color: #ffffff;
     cursor: pointer;
-    background-color: #fff;
     color: black;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    margin-left: 10px;
 }
 
 .openbtn:hover {
     background-color: #444;
 }
 
+.img {
+    max-width: 30px;
+    height: 30px;
+    margin-left: 100px;
+
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    
+}
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background-color: #fff;
     padding-right: 20px;
@@ -167,12 +169,8 @@ nav {
 .nav-links {
     list-style: none;
     display: flex;
-    margin: 0px;
+    margin-left: auto;
     padding: 0px;
-}
-
-.nav-links li {
-    margin-left: 20px;
 }
 
 .nav-links a {
@@ -180,10 +178,26 @@ nav {
     text-decoration: none;
     font-size: 16px;
     text-align: right;
-    font-weight: 600;
-    text-shadow: #474444;
+    font-weight: 500;
+    /* text-shadow: 1px 1px 2px #9b9696; */
+    padding: 10px 10px;
+    border-radius: 8px;
 }
 
 .nav-links a:hover {
-    color: #f4d03f;
+    color: #e1e1e1;
+    background-color: #9e9e9e
+}
+
+#support {
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+#support:hover {
+    background-color: #474444;
+    color: #d4d2d2;
+
 }
