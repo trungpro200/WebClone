@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Test Tailwind&Gsap</title>
+</head>
+
+<body class="h-screen">
+  <div class="relative overflow-x-hidden">
+    <div class="scroll-container">
+      <section class="scroll-section-hide flex h-screen w-screen items-center justify-center bg-white">
+        <div class="grid grid-cols-6 grid-rows-4 gap-5">
+          <div class="col-span-2 row-span-2 size-96 scale-100 rounded-2xl bg-yellow-300"></div>
+          <div class="col-span-1 row-span-1 scale-100 rounded-2xl bg-orange-300"></div>
+          <div class="col-span-1 row-span-1 scale-100 rounded-2xl bg-green-300"></div>
+          <div class="col-span-2 col-start-3 row-start-2 scale-100 rounded-2xl bg-blue-300"></div>
+          <div class="col-span-4 col-start-1 row-span-2 row-start-3 scale-100 rounded-2xl bg-purple-300"></div>
+          <div class="col-span-2 row-span-4 scale-100 rounded-2xl bg-red-300"></div>
+        </div>
+      </section>
+      <section
+        class="bg-white-300 scroll-section-hide scroll-section-show flex h-screen w-screen items-center justify-center">
+        <div class="grid grid-cols-6 grid-rows-4 gap-5">
+          <div class="col-span-2 col-start-1 row-span-1 row-start-1 scale-0 rounded-2xl bg-yellow-300 opacity-0"></div>
+          <div class="col-start-1 row-start-2 scale-0 rounded-2xl bg-orange-300 opacity-0"></div>
+          <div class="col-start-2 row-start-2 scale-0 rounded-2xl bg-green-300 opacity-0"></div>
+          <div class="col-span-4 col-start-3 row-span-2 scale-0 rounded-2xl bg-blue-300 opacity-0"></div>
+          <div class="col-span-4 col-start-1 row-span-2 scale-0 rounded-2xl bg-purple-300 opacity-0"></div>
+          <div class="col-span-2 col-start-5 row-span-2 row-start-3 size-96 scale-0 rounded-2xl bg-red-300 opacity-0">
+          </div>
+        </div>
+      </section>
+      <section
+        class="bg-white-300 scroll-section-hide scroll-section-show flex h-screen w-screen items-center justify-center">
+        <div class="grid grid-cols-6 grid-rows-4 gap-5">
+          <div class="col-span-4 row-span-2 scale-0 rounded-2xl bg-yellow-300 opacity-0"></div>
+          <div class="col-span-4 row-span-2 scale-0 rounded-2xl bg-orange-300 opacity-0"></div>
+          <div class="scale-0P rounded-2xl bg-green-300 opacity-0"></div>
+          <div class="row-span-2 scale-0 rounded-2xl bg-blue-300 opacity-0"></div>
+          <div class="scale-0 rounded-2xl bg-purple-300 opacity-0"></div>
+          <div class="col-span-2 col-start-5 row-span-2 row-start-1 size-96 scale-0 rounded-2xl bg-red-300 opacity-0">
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <section class="h-screen">
+    <div class="flex h-full items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-9xl font-bold">Hello World</h1>
+        <p class="text-4xl">It fking work</p>
+      </div>
+    </div>
+  </section>
+
+  <!--GSAP-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
+    integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"
+    integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!--Lenis-->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
