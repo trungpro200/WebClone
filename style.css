@@ -143,13 +143,11 @@ main {
 
 .openbtn {
     font-size: 150%;
-    background-color: #ffffff;
     cursor: pointer;
     color: black;
     border: none;
     margin-left: 10px;
     transition: transform 0.2s;
-    text-shadow: #474444;
 }
 
 .openbtn:hover {
