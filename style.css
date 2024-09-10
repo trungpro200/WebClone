@@ -143,6 +143,7 @@ main {
 
 .openbtn {
     font-size: 150%;
+    background-color: transparent;
     cursor: pointer;
     color: black;
     border: none;
@@ -157,8 +158,8 @@ main {
 .img {
     max-width: 30px;
     height: 30px;
-    margin-left: 100px;
-
+    margin-left: 30px;
+    border-radius: 50%;
 }
 
 .logo a {
