@@ -1,9 +1,9 @@
 function openNav() {
-    document.getElementById("sidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.querySelector(".sidebar").classList.add("active");
+    document.querySelector("#main").classList.add("shifted");
 }
 
 function closeNav() {
-    document.getElementById("sidebar").style.width = "0px";
-    document.getElementById("main").style.marginLeft = "0px";
+    document.querySelector(".sidebar").classList.remove("active");
+    document.querySelector("#main").classList.remove("shifted");
 }

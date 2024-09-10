@@ -1,0 +1,99 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 14px; /* Increase font size for better readability */
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px; /* Add padding for spacing */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 12px;
+        width: 100%;
+        text-align: center; 
+    }
+
+    #chessboard {
+        width: 100vw; 
+        height: auto;
+        transform: scale(0.7); 
+    }
+
+    #undo, #restart {
+        width: 100px;
+        height: 50px;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #main.shifted {
+        margin-left: 100px;
+}
+}
+/* Mobile Phones (Landscape) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    body {
+        font-size: 13px;
+    }
+
+    nav {
+        flex-direction: row;
+    }
+
+    .nav-links a {
+        padding: 8px;
+    }
+
+    #chessboard {
+        transform: scale(0.9);
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    body {
+        font-size: 14px;
+    }
+
+    .nav-links a {
+        padding: 10px 12px;
+    }
+
+    #chessboard {
+        transform: scale(1);
+    }
+}
+/* Laptops and Desktops */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    body {
+        font-size: 15px;
+    }
+
+    .nav-links a {
+        padding: 10px 15px;
+    }
+}
+
+/* Large Desktops */
+@media only screen and (min-width: 1441px) {
+    body {
+        font-size: 15px;
+    }
+
+    .nav-links a {
+        padding: 10px 15px;
+    }
+
+    #chessboard {
+        transform: none; 
+    }
+}
