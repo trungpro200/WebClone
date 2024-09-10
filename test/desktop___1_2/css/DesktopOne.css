@@ -1,0 +1,106 @@
+/*=========== TABLE OF CONTENTS ===========
+1. Common CSS
+2. Page CSS
+==========================================*/
+
+/*-------------------------------------
+  1. Common CSS
+--------------------------------------*/
+.menu {
+  letter-spacing: 1.76px;
+}
+
+/*-------------------------------------
+  2. Page CSS
+--------------------------------------*/
+.desktop-one {
+  background-color: var(--gray_400);
+  width: 100%;
+}
+
+.head {
+  margin-bottom: 1030px;
+  padding-left: 172px;
+  padding-right: 172px;
+  display: flex;
+  background-color: var(--white_a700);
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  @media only screen and (max-width: 1440px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media only screen and (max-width: 1050px) {
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.rowlogo {
+  margin-left: 10px;
+  gap: 12px;
+  display: flex;
+  align-items: center;
+  @media only screen and (max-width: 1440px) {
+    margin-left: 0px;
+  }
+
+  @media only screen and (max-width: 1050px) {
+    margin-left: 0px;
+  }
+}
+
+.image {
+  height: 46px;
+  width: 46px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.logo {
+  margin-bottom: 4px;
+  letter-spacing: 1.76px;
+  align-self: end;
+}
+
+.rowsupport_us {
+  gap: 26px;
+  display: flex;
+  align-items: center;
+  @media only screen and (max-width: 1050px) {
+    flex-direction: column;
+  }
+}
+
+.rowmenu {
+  gap: 32px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.support_us {
+  color: var(--white_a700);
+  padding-left: 18px;
+  padding-right: 18px;
+  letter-spacing: 1.76px;
+  font-size: 16px;
+  background-color: var(--black_900_01);
+  text-align: center;
+  height: 42px;
+  min-width: 130px;
+  border-radius: var(--radius-xs);
+  @media only screen and (max-width: 1440px) {
+    font-size: 13px;
+  }
+}
+.rowmenu a:hover{
+  color: aliceblue;
+}
